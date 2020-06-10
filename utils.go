@@ -3,6 +3,7 @@ package Utils
 import (
 	"strconv"
 	"strings"
+	"time"
 )
 
 func GetString(obj map[string]interface{}, key string) (string, bool) {
@@ -13,6 +14,13 @@ func GetString(obj map[string]interface{}, key string) (string, bool) {
 	return "", false
 }
 
+func GetTime(obj map[string]interface{}, key string) (time.Time, bool) {
+	switch obj[key].(type) {
+	case time.Time:
+		return obj[key].(time.Time), true
+	}
+	return time.Time{}, false
+}
 func GetBool(obj map[string]interface{}, key string) (bool, bool) {
 	switch obj[key].(type) {
 	case bool:
